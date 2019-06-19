@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
     {% if user.is_staff %}
-        <a href="{% url "add" %}"><button type="button" class="btn btn-primary mb-3">Ajouter un CR</button></a>
+        <a href="{% url "add" %}">
+            <button type="button" class="btn btn-primary mb-3">Ajouter un CR</button>
+        </a>
+        <div class="alert alert-danger" role="alert">
+            Attention, ce site n'est pas un site d'archivage sécurisé des CR, il sert simplement à la diffusion au
+            public et ne dispense pas d'une <b>sauvegarde régulière sur Sharepoint</b>
+        </div>
     {% endif %}
     {% if year_list %}
         {% for year in year_list %}
-            <h5 class="mb-0"><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5><span class="badge badge-pill badge-primary">{{ year.count_report }} compte{{ year.count_report | pluralize}}-rendu{{ year.count_report | pluralize}} disponible{{ year.count_report | pluralize}}</span>
+            <h5 class="mb-0"><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5>
+            <span class="badge badge-pill badge-primary">{{ year.count_report }} compte{{ year.count_report | pluralize }}-rendu{{ year.count_report | pluralize }} disponible{{ year.count_report | pluralize }}</span>
 
             {% if type_list %}
                 {% for type in type_list %}
-                    <ul style="margin-bottom: 5px"><a href="{% url "list_type" year.pk type.pk %}">{{ type.name }}</a></ul>
+                    <ul style="margin-bottom: 5px"><a href="{% url "list_type" year.pk type.pk %}">{{ type.name }}</a>
+                    </ul>
                 {% endfor %}
             {% else %}
                 Pas de contenu à afficher
