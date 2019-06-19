@@ -128,6 +128,7 @@ LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL ="/"
 
 CRONJOBS = [
+    ('0 0 10 * *', 'app.cron.delete_file_orphan'),
 ]
 
 # FIX Variables d'environnement pas présentes dans cron
