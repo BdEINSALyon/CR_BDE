@@ -16,6 +16,10 @@ class Type(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def count_report_byyear(self, year):
+        return Report.objects.filter(is_public=True).filter(year=year).filter(type=self).count()
+
 
 class Year(models.Model):
     name = models.CharField(max_length=30, verbose_name="Date du mandat", help_text="Exemple : 2018/2019")
@@ -23,6 +27,10 @@ class Year(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def count_report(self):
+        return Report.objects.filter(is_public=True).filter(year=self).count()
 
 
 class Report(models.Model):

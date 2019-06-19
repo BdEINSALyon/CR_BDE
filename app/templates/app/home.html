@@ -5,7 +5,8 @@
     {% endif %}
     {% if year_list %}
         {% for year in year_list %}
-            <h5><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5>
+            <h5 class="mb-0"><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5><span class="badge badge-pill badge-primary">{{ year.count_report }} compte{{ year.count_report | pluralize}}-rendu{{ year.count_report | pluralize}} disponible{{ year.count_report | pluralize}}</span>
+
             {% if type_list %}
                 {% for type in type_list %}
                     <ul style="margin-bottom: 5px"><a href="{% url "list_type" year.pk type.pk %}">{{ type.name }}</a></ul>
