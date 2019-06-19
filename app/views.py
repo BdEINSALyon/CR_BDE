@@ -36,7 +36,7 @@ def show_report(request, pk_report):
 
 
 def add_report(request):
-    form = ReportForm(request.POST or None)
+    form = ReportForm(request.POST or None, request.FILES or None)
     form.fields["year"].queryset = Year.objects.filter(upload_active=True)
     if form.is_valid():
         form.save()
