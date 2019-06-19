@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 import os
 from CR_BDE import settings
+from app.forms import ReportForm
 
 
 def random_file_name(instance, filename):
