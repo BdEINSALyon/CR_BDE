@@ -6,6 +6,7 @@ django-analytical==2.5.0
 django-anymail==6.0.1
 django-crontab==0.7.1
 django-email-obfuscator==0.1.5
+gunicorn==19.9.0
 idna==2.8
 psycopg2-binary==2.8.3
 pytz==2019.1
