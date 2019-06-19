@@ -1,4 +1,5 @@
 {% load email_obfuscator %}
+{% load static %}
 <!doctype html>
 <html lang="fr" class="h-100">
 <head>
@@ -8,6 +9,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>CR BdE INSA Lyon</title>
+    <link rel="icon" href="{% static "favicon.ico" %}"/>
 
 
     <!-- Bootstrap core CSS -->
@@ -54,7 +56,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container">
         <div style="text-align: center">
-            <a href="{% url "home" %}"><img height="200px" src="https://logos.bde-insa-lyon.fr/bde/bde.png"></a>
+            <a href="{% url "home" %}"><img height="200px" src="{% static "bde.png" %}"></a>
             <h3 class="mb-3">Site de consultation des comptes rendus du BdE INSA Lyon</h3>
         </div>
         <nav aria-label="breadcrumb">
