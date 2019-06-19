@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='report',
             name='media',
-            field=models.FileField(upload_to=app.models.random_file_name, verbose_name='Fichier CR'),
+            field=models.FileField(verbose_name='Fichier CR'),
         ),
     ]
