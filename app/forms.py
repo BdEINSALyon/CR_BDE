@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from app.models import Report
+from .models import Report
 
 
 class ReportForm(ModelForm):

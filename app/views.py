@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import FileResponse
 from django.http import HttpResponseForbidden
+from .forms import ReportForm
 
 # Create your views here.
 from app.models import *
@@ -33,3 +34,11 @@ def show_report(request, pk_report):
     report.download_number = report.download_number + 1
     report.save()
     return FileResponse(open(report.get_url, 'rb'), content_type='application/pdf', filename='hello.pdf')
+
+
+def addReport(request):
+    form = ReportForm(request.POST)
+    if form.is_valid():
+        return render(request, 'app/add_report.html', {"form": form})
+    else:
+        return render(request, 'app/add_report.html', {"form":form})
