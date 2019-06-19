@@ -1,13 +1,5 @@
 from django.db import models
-import uuid
-import os
 from CR_BDE import settings
-
-
-def random_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('', filename)
 
 
 class Type(models.Model):
@@ -35,7 +27,7 @@ class Year(models.Model):
 
 class Report(models.Model):
     date = models.DateField(verbose_name="Date de la réunion", null=False, blank=False)
-    file = models.FileField(verbose_name="Fichier CR", null=False, blank=False, upload_to=random_file_name)
+    file = models.FileField(verbose_name="Fichier CR", null=False, blank=False)
     type = models.ForeignKey(verbose_name="Type de réunion", to=Type, null=False, blank=False, on_delete=models.PROTECT)
     year = models.ForeignKey(verbose_name="Mandat", to=Year, null=False, blank=False, on_delete=models.PROTECT)
     created_date = models.DateField(auto_now_add=True)
