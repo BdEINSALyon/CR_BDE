@@ -27,7 +27,7 @@ class Year(models.Model):
 
 class Report(models.Model):
     date = models.DateField(verbose_name="Date de la réunion", null=False, blank=False)
-    media = models.FileField(verbose_name="Fichier CR", null=False, blank=False, upload_to=random_file_name)
+    file = models.FileField(verbose_name="Fichier CR", null=False, blank=False, upload_to=random_file_name)
     type = models.ForeignKey(verbose_name="Type de réunion", to=Type, null=False, blank=False, on_delete=models.PROTECT)
     year = models.ForeignKey(verbose_name="Mandat", to=Year, null=False, blank=False, on_delete=models.PROTECT)
     created_date = models.DateField(auto_now_add=True)
@@ -39,4 +39,4 @@ class Report(models.Model):
 
     @property
     def get_url(self):
-        return settings.MEDIA_ROOT + "/" + str(self.media)
+        return settings.MEDIA_ROOT + "/" + str(self.file)

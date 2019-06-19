@@ -1,17 +1,16 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from django.http import FileResponse
-from django.http import HttpResponseForbidden
-from .forms import ReportForm
+from django.http import FileResponse, HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 
 # Create your views here.
 from app.models import *
+from .forms import ReportForm
 
 
 def home(request):
     year_list = Year.objects.all().order_by("-name")
     type_list = Type.objects.all()
-    return render(request, 'app/home.html', {"year_list":year_list, "type_list": type_list})
+    return render(request, 'app/home.html', {"year_list": year_list, "type_list": type_list})
 
 
 def list_type(request, pk_year, pk_type):
@@ -36,9 +35,11 @@ def show_report(request, pk_report):
     return FileResponse(open(report.get_url, 'rb'), content_type='application/pdf', filename='hello.pdf')
 
 
-def addReport(request):
-    form = ReportForm(request.POST)
+def add_report(request):
+    form = ReportForm(request.POST or None)
+    form.fields["year"].queryset = Year.objects.filter(upload_active=True)
     if form.is_valid():
-        return render(request, 'app/add_report.html', {"form": form})
+        form.save()
+        return redirect(reverse('home'))
     else:
-        return render(request, 'app/add_report.html', {"form":form})
+        return render(request, 'app/add_report.html', {"form": form})

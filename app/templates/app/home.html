@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if user.is_staff %}
+        <a href="{% url "add" %}"><button type="button" class="btn btn-primary mb-3">Ajouter un CR</button></a>
+    {% endif %}
     {% if year_list %}
         {% for year in year_list %}
             <h5><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5>
