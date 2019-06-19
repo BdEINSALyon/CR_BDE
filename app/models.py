@@ -30,8 +30,13 @@ class Report(models.Model):
     media = models.FileField(verbose_name="Fichier CR", null=False, blank=False, upload_to=random_file_name)
     type = models.ForeignKey(verbose_name="Type de réunion", to=Type, null=False, blank=False, on_delete=models.PROTECT)
     year = models.ForeignKey(verbose_name="Mandat", to=Year, null=False, blank=False, on_delete=models.PROTECT)
+    created_date = models.DateField(auto_now_add=True)
     download_number = models.IntegerField(default=0)
     is_public = models.BooleanField(default=True, null=False)
 
     def __str__(self):
         return "CR " + self.type.name + " du " + str(self.date)
+
+    @property
+    def get_url(self):
+        return settings.MEDIA_ROOT + "/" + str(self.media)

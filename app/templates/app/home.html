@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if year_list %}
+        {% for year in year_list %}
+            <h5><a href="{% url "list_year" year.pk %}">Mandat {{ year.name }}</a></h5>
+            {% if type_list %}
+                {% for type in type_list %}
+                    <ul style="margin-bottom: 5px"><a href="{% url "list_type" year.pk type.pk %}">{{ type.name }}</a></ul>
+                {% endfor %}
+            {% else %}
+                Pas de contenu à afficher
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        Pas de contenu à afficher
+    {% endif %}
+{% endblock %}
