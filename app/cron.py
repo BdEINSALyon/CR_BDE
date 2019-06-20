@@ -19,7 +19,7 @@ def delete_file_orphan():
 
 
 def send_cr():
-    report = Report.objects.filter(email_sent=False)
+    report = Report.objects.filter(email_sent=False).order_by("type", "-date")
     if report.count() > 0:
         html_content = render_to_string('app/email_send_cr.html', {'report_list': report, 'site': settings.ALLOWED_HOSTS[0], 'mois': timezone.now()})
         text_content = render_to_string('app/email_send_cr.txt', {'report_list': report, 'site': settings.ALLOWED_HOSTS[0]})
