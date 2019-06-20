@@ -129,6 +129,8 @@ LOGIN_REDIRECT_URL ="/"
 
 CRONJOBS = [
     ('0 0 10 * *', 'app.cron.delete_file_orphan'),
+    ('0 9 1 * *', 'app.cron.send_cr'),
+    ('0 9 26 * *', 'app.cron.send_reminder_sg'),
 ]
 
 # FIX Variables d'environnement pas présentes dans cron
@@ -147,6 +149,9 @@ ANYMAIL = {
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', "cr@mg.bde-insa-lyon.fr")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+EMAIL_SG = os.getenv('EMAIL_SG', "sg@bde-insa-lyon.fr")
+EMAIL_CR = os.getenv('EMAIL_CR', "bde.equipe.cr@led.insa-lyon.fr")
 
 GOOGLE_ANALYTICS_PROPERTY_ID = os.getenv('GOOGLE_ANALYTICS_PROPERTY_ID')
 

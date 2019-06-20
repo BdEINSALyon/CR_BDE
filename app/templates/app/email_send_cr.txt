@@ -1,0 +1,9 @@
+{% autoescape off %}
+Bonjour à tous,
+
+Il y a {{ report_list.count }} nouveau{{ report_list.count | pluralize }} compte{{ report_list.count | pluralize }}-rendu{{ report_list.count | pluralize }} disponible{{ report_list.count | pluralize }} sur le site du BdE.
+Le lien : https://{{ site }}
+
+A dans un mois !
+
+{% endautoescape %}

@@ -1,0 +1,13 @@
+{% autoescape off %}
+Salut cher/chère SG,
+
+Comme tu le sais l'envoi des CR aux gens qui en font la demande est une obligation légale. Dans environ 5 jours (Le 1er du mois), le mail sera envoyé sur la mailing CR avec tous les CR que tu as publiés depuis le mois dernier.
+Si ce n'est pas encore fait, je t'invite à te mettre à jour. Actuellement, le dernier CR date du {{ report.date }}.
+
+Tu peux te connecter sur le site ici : https://{{ site }}
+
+Merci pour tout ce que tu fais <3
+
+Torrente te remercie
+
+{% endautoescape %}

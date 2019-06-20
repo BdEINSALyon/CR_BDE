@@ -43,6 +43,7 @@ class Report(models.Model):
     created_date = models.DateField(auto_now_add=True)
     download_number = models.IntegerField(default=0)
     is_public = models.BooleanField(default=True, null=False)
+    email_sent = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
         return "CR " + self.type.name + " du " + str(self.date)
