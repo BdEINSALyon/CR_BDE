@@ -13,4 +13,7 @@ class ReportAdmin(admin.ModelAdmin):
 
 @admin.register(Type, Year)
 class Admin(admin.ModelAdmin):
-    pass
+    def get_readonly_fields(self, request, obj=None):
+        if obj: # editing an existing object
+            return self.readonly_fields + ('folder_name',)
+        return self.readonly_fields
