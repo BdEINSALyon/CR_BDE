@@ -2,20 +2,27 @@ import os
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from CR_BDE import settings
+
 from django.utils import timezone
-from .models import Report
+from app.models import *
 
 
 def delete_file_orphan():
-    list = os.listdir(settings.MEDIA_ROOT)
-    image = Report.objects.all()
-    imagelist = []
-    for img in image:
-        string = img.file.name
-        imagelist.append(string)
-    for img in list:
-        if img not in imagelist:
-            os.remove(settings.MEDIA_ROOT + "/" + img)
+    year_list = Year.objects.all()
+    type_list = Type.objects.all()
+    for year in year_list:
+        for type in type_list:
+            list = os.listdir(settings.MEDIA_ROOT+ "/" + year.folder_name + "/" + type.folder_name)
+            report = Report.objects.filter(year=year).filter(type=type)
+            filelist = []
+            for rep in report:
+                file = rep.file.name
+                filelist.append(file)
+            for img in list:
+                if img not in filelist:
+                    print (settings.MEDIA_ROOT+ "/" + year.folder_name + "/" + type.folder_name + "/" + img)
+            print (filelist)
+            print (list)
 
 
 def send_cr():

@@ -9,5 +9,6 @@ urlpatterns = [
     path('list/<int:pk_year>/<int:pk_type>', views.list_type, name='list_type'),
     path('list/<int:pk_year>', views.list_year, name='list_year'),
     path('show/<int:pk_report>', views.show_report, name='show'),
+    path('edit/<int:pk_report>', login_required(views.edit_report), name='edit'),
     path('add/', login_required(views.add_report), name='add'),
 ]

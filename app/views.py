@@ -43,3 +43,14 @@ def add_report(request):
         return redirect(reverse('home'))
     else:
         return render(request, 'app/add_report.html', {"form": form})
+
+
+def edit_report(request, pk_report):
+    report = get_object_or_404(Report, pk=pk_report)
+    form = ReportForm(request.POST or None, request.FILES or None, instance=report)
+    form.fields["year"].queryset = Year.objects.filter(upload_active=True)
+    if form.is_valid():
+        form.save()
+        return redirect(reverse('home'))
+    else:
+        return render(request, 'app/add_report.html', {"form": form})

@@ -3,7 +3,7 @@
     {% if report_list %}
         {% for report in report_list %}
             <ul><a href="{% url "show" report.pk %}" style="margin-bottom: 0px">Compte rendu du  {{ report.type.name }} du {{ report.date }}</a>
-                <br/><i style="font-size: smaller">Ajouté le {{ report.created_date }} {% if user.is_staff %}- Téléchargé {{ report.download_number }} fois{% endif %}</i>
+                <br/><i style="font-size: smaller">Ajouté le {{ report.created_date }} {% if user.is_staff %}- Téléchargé {{ report.download_number }} fois - <a href="{% url "edit" report.pk %}">Editer</a> {% endif %}</i>
             </ul>
         {% endfor %}
     {% else %}
