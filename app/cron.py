@@ -41,7 +41,7 @@ def send_cr():
 
 
 def send_reminder_sg():
-    report = Report.objects.latest("-date")
+    report = Report.objects.latest("date")
     text_content = render_to_string('app/email_send_reminder_sg.txt', {'report': report, 'site': settings.ALLOWED_HOSTS[0]})
     send_mail(
         '[J-5] Diffusion CR',
